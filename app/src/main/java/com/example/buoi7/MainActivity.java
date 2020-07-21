@@ -12,6 +12,7 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             },999);
             return;
         }
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 2000, 0,
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0,
                 new LocationListener() {
                     @Override
                     public void onLocationChanged(Location location) {
@@ -72,9 +73,11 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,"Sử dụng wifi", Toast.LENGTH_SHORT).show();
 
         }
-        if (is3G.isConnected()){
+        else if (is3G.isConnected()){
             Toast.makeText(this,"Sử dụng 3G", Toast.LENGTH_SHORT).show();
 
+        } else {
+            Toast.makeText(this,"Không sử dụng internet", Toast.LENGTH_SHORT).show();
         }
     }
 }
