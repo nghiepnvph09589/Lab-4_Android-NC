@@ -18,13 +18,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    TextView textView;
+    TextView textView, textView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.tv);
+        textView2 = findViewById(R.id.tv2);
     }
 
     public void getGPS(View view) {
@@ -43,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
                 new LocationListener() {
                     @Override
                     public void onLocationChanged(Location location) {
-                        textView.setText(location.getLatitude()+" : " + location.getLongitude());
+
+                        textView.setText("Longitude: " + location.getLongitude());
+                        textView2.setText("Latitude: "+location.getLatitude());
                         Toast.makeText(MainActivity.this, location.getLatitude()+" : " + location.getLongitude(),Toast.LENGTH_SHORT).show();
 
                     }
